@@ -1,0 +1,14 @@
+<p>signal-parent works!</p>
+
+Non Signal Counter: {{ nonSignalCounter }}
+ <button (click)="updateNonSignalCounter()">Update Non Signal Counter</button>
+
+ <br />
+
+Signal Counter: {{ signalCounter() }}
+
+<button (click)="updateSignalCounter()">Update Signal Counter</button>
+
+
+<app-signal-child></app-signal-child>
+<app-signal-child-two></app-signal-child-two>

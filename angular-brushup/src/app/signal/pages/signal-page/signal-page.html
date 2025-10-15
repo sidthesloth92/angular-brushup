@@ -1,0 +1,22 @@
+
+
+<button (click)="fetchExchangeRates()">Fetch Exchange Rates</button>
+
+@if(isLoading()) {
+  <p>Loading exchange rates...</p>
+}
+@else if(exchangeRates()) {
+  <h2>Exchange Rates:</h2>
+
+  @for(rate of exchangeRates(); track rate.exchangeId) {
+    <p>{{ rate.name }}: {{ rate.rank }}</p>
+  }
+  <pre>{{ exchangeRates() | json }}</pre>
+}
+@else {
+  <p>No exchange rates available.</p>
+}
+  <p>No exchange rates available.</p>
+
+
+<app-signal-parent></app-signal-parent>
