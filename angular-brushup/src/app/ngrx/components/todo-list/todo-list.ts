@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { selectFilteredTodoList, selectToDos } from '../../store/todo-list/todo-list.selector';
 import { AsyncPipe } from '@angular/common';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { addTodo, toggleTodo, removeTodo } from '../../store/todo-list/todo-list.actions';
+import { ToDoListContainerActions } from '../../store/todo-list/todo-list.actions';
 
 @Component({
   selector: 'app-todo-list',
@@ -26,17 +26,17 @@ export class TodoList {
   addToDo() {
     // Logic to add a new todo item
     console.log('Add Todo button clicked');
-    this.store.dispatch(addTodo({ title: this.todoForm.value.title! }));
+    this.store.dispatch(ToDoListContainerActions.addTodo({ title: this.todoForm.value.title! }));
     this.todoForm.reset();
   }
 
   toggleTodo(id: number) {
     console.log('Toggle Todo with id:', id);
-    this.store.dispatch(toggleTodo({ id }));
+    this.store.dispatch(ToDoListContainerActions.toggleTodo({ id }));
   }
 
   deleteTodo(id: number) {
     console.log("Delete todo with id: ", id);
-    this.store.dispatch(removeTodo({ id }));
+    this.store.dispatch(ToDoListContainerActions.removeTodo({ id }));
   }
 }
