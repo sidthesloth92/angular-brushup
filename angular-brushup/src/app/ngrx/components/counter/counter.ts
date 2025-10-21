@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, Signal } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { decrement, increment, reset } from '../../store/counter.actions';
 import { Observable } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
+import { selectCount } from '../../store/counter.selector';
 
 @Component({
   selector: 'app-counter',
@@ -13,9 +14,11 @@ import { AsyncPipe } from '@angular/common';
 export class Counter {
 
   count$: Observable<number>;
+  counterSignal: Signal<number>;
 
   constructor(private store: Store<{count: number}>) {
-    this.count$ = store.select(state => state.count);
+    this.count$ = store.select(selectCount);
+    this.counterSignal = store.selectSignal(selectCount);
   }
 
   increment() {

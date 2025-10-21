@@ -3,8 +3,8 @@ import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
 import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptors } from '@angular/common/http';
-import { provideStore, StoreModule } from '@ngrx/store';
-import { counterReducer } from './ngrx/store/counter.reducer';
+import { provideState, provideStore, StoreModule } from '@ngrx/store';
+import { counterFeatureKey, counterReducer } from './ngrx/store/counter.reducer';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -26,6 +26,7 @@ export const appConfig: ApplicationConfig = {
             return next(authReq);
         }
     ])),
-    provideStore({ count: counterReducer }),
+    provideStore(),
+    provideState({ name: counterFeatureKey, reducer: counterReducer })
 ]
 };
