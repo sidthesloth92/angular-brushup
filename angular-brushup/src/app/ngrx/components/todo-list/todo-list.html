@@ -1,0 +1,24 @@
+<h1>Todo List</h1> 
+
+
+<form [formGroup]="todoForm" (ngSubmit)="addToDo()">
+    <label for="title">Title</label>
+    <input id="title" formControlName="title" />
+    <button type="submit" [disabled]="todoForm.invalid">Add</button>
+</form>
+
+
+<ul>
+    @for (todo of todos$ | async; track todo.id) {
+        <li>
+            <div> 
+                <span [style.text-decoration]="todo.completed ? 'line-through' : 'none'">{{ todo.title }}</span>
+                <input type="checkbox" [checked]="todo.completed" (change)="toggleTodo(todo.id)" />
+                <button (click)="deleteTodo(todo.id)">Delete</button> 
+            </div>
+        </li>
+    }
+    @empty {
+        <p>No todos yet</p>
+    }
+</ul>

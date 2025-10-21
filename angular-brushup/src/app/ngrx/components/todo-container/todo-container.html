@@ -1,0 +1,5 @@
+<div>
+    <app-search-todo [placeholder]="'Search todos...'" [initialValue]="(searchTerm$ | async) ?? ''" (searchChange)="onSearchChange($event)" />
+    <app-search-input [placeholder]="'Search todos...'" [formControl]="searchFormControl"  />
+    <app-todo-list></app-todo-list>
+</div>
